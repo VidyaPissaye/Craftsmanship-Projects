@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=tictactoe
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/tictactoe
+CND_ARTIFACT_NAME_Debug=fizzbuzz
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/fizzbuzz
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=tictactoe.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/tictactoe.tar
+CND_PACKAGE_NAME_Debug=fizzbuzz.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/fizzbuzz.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-MacOSX
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-MacOSX
-CND_ARTIFACT_NAME_Release=tictactoe
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/tictactoe
+CND_ARTIFACT_NAME_Release=fizzbuzz
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/fizzbuzz
 CND_PACKAGE_DIR_Release=dist/Release/GNU-MacOSX/package
-CND_PACKAGE_NAME_Release=tictactoe.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/tictactoe.tar
+CND_PACKAGE_NAME_Release=fizzbuzz.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/fizzbuzz.tar
 #
 # include compiler specific variables
 #
