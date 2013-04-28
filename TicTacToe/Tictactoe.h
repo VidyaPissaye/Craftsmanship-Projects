@@ -32,7 +32,11 @@ public:
         
     void playgame();
    
-    bool determine_game(int row, int column, char move);
+    bool row_game(int row, char move);
+    bool col_game(int col, char move);
+    bool top_bottom_diagonal_game(int row, int col, char move);
+    bool bottom_top_diagonal_game(int row, int col, char move);
+    bool determine_is_game(int row, int column, char move);
     
     void display_board();
     
