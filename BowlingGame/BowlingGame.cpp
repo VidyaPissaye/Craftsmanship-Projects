@@ -2,17 +2,17 @@
 #include "BowlingGame.h"
 
 #define max_pins 10
-#define max_frames 10
+#define max_frames 9
 
 void BowlingGame::display_score() {
     int i=0, final_score = 0; 
-    int scores[max_frames];
+    int scores[max_frames+1];
     
     cout << "The score for each frame: " << endl;
-    while((i < max_frames) && (frames[i].frame_done)) {
+    while((i <= max_frames) && (frames[i].frame_done)) {
         cout << frames[i].turn1;
         if(frames[i].turn2 >= 0) {
-            if(i == (max_frames-1)) {
+            if(i == max_frames) {
                 cout << ":" << frames[i].turn2 << ":" << frames[i].bonus << " | ";
             }
             else {
@@ -30,7 +30,7 @@ void BowlingGame::display_score() {
     cout << endl;
     i = 0;
     
-    while((i < max_frames) && (frames[i].frame_done)) {
+    while((i <= max_frames) && (frames[i].frame_done)) {
         cout << scores[i] << " | ";
         i++;
     }
@@ -47,7 +47,7 @@ bool BowlingGame::spare(int frame) {
 
 void BowlingGame::prev_strike_bonus(int frame) {
     if(strike(frames[frame-1].turn1)) {
-        if((!strike(frames[frame].turn1)) || (strike(frames[frame].turn1) && (frame == (max_frames-1)))) {
+        if((!strike(frames[frame].turn1)) || (strike(frames[frame].turn1) && (frame == max_frames))) {
             frames[frame-1].bonus = frames[frame].turn1 + frames[frame].turn2;
         }
     }
@@ -73,12 +73,11 @@ void BowlingGame::update_bonus(int frame) {
 void BowlingGame::roll(int pins_knocked) {
     static int current_frame = 0;
     
-    // max_frame-1 is used to detect max_frame because array starts from 0
     if(frames[current_frame].turn1 < 0) {
         frames[current_frame].turn1 = pins_knocked;
         
         if(strike(pins_knocked)) {            
-            if(current_frame != (max_frames-1)) {
+            if(current_frame != max_frames) {
                 frames[current_frame].frame_done = true;
                 update_bonus(current_frame);  
                 current_frame++;
@@ -86,7 +85,13 @@ void BowlingGame::roll(int pins_knocked) {
         }
     }
     else {
-        if(current_frame == (max_frames-1)) {
+        if(current_frame != max_frames) {
+            frames[current_frame].turn2 = pins_knocked;
+            frames[current_frame].frame_done = true;
+            update_bonus(current_frame);  
+            current_frame++;
+        }
+        else {
             if(frames[current_frame].turn2 < 0) {
                 frames[current_frame].turn2 = pins_knocked;
                 
@@ -100,20 +105,13 @@ void BowlingGame::roll(int pins_knocked) {
                 frames[current_frame].frame_done = true;
                 update_bonus(current_frame);  
             }
-        }
-        else {
-            frames[current_frame].turn2 = pins_knocked;
-            frames[current_frame].frame_done = true;
-            update_bonus(current_frame);  
-            current_frame++;
-        }                
+        }             
     }
     
 }
 
 bool BowlingGame::game_over() {
-    // max_frame-1 is used to detect max_frame because array starts from 0
-    return(frames[max_frames-1].frame_done);
+    return(frames[max_frames].frame_done);
 }
 
 void BowlingGame::play() {    
