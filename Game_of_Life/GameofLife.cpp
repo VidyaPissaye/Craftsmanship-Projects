@@ -1,8 +1,7 @@
 
 #include "GameofLife.h"
 
-void GameofLife::initial_universe() {
-    
+void GameofLife::create_border() {
     for (int k = 0; k < cols; k++) {
         universe[0][k] = '-';
         universe[rows-1][k] = '-';
@@ -12,6 +11,10 @@ void GameofLife::initial_universe() {
         universe[p][0] = '-';
         universe[p][cols-1] = '-';
     }
+}
+
+void GameofLife::random_universe() {
+    create_border();
     
     for(int i=1; i < rows-1; i++) {
         for(int j = 1; j < cols-1; j++) {
@@ -24,7 +27,7 @@ void GameofLife::initial_universe() {
             }
         }
     }
-    cout << "Initial Universe" << endl;
+    cout << "Random Universe" << endl;
     display_universe();
 }
 
@@ -87,11 +90,11 @@ void GameofLife::determine_life(char alt_univ[][cols]) {
                 if((neighbours_alive < 2) || (neighbours_alive > 3)) {
                     alt_univ[i][j] = '-';
                 }
-                else if((neighbours_alive == 2) || (neighbours_alive == 3)) {
+                else {
                     alt_univ[i][j] = '*';
                 }
             }
-            else if(universe[i][j] == '-') {
+            else {
                 if(neighbours_alive == 3) {
                     alt_univ[i][j] = '*';
                 }
@@ -111,8 +114,7 @@ void GameofLife::update_universe(char alt_univ[][cols]) {
     }
 }
 
-void GameofLife::generations() {
-    
+void GameofLife::generations() {   
     char alt_univ[rows][cols];
     
     for(int i=0; i < num_of_gens; i++) {
@@ -124,6 +126,6 @@ void GameofLife::generations() {
 }
 
 void GameofLife::play_gameoflife() {
-    initial_universe();
+    random_universe();
     generations();
 }

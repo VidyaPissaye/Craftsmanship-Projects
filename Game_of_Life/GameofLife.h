@@ -29,6 +29,7 @@ public:
     void update_universe(char alt_univ[][cols]);
     void generations();
     void play_gameoflife();
+    void create_border();
 };
 
 
